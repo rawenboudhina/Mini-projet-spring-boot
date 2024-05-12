@@ -22,5 +22,7 @@ public interface PlatService {
 	List<Plat> findByStyleIdStyle(Long id);
 	List<Plat> findByOrderByNomPlatAsc();
 	List<Plat> trierPlatsNomsPrix();
+	List<Style> getAllStyles();
+
 
 }

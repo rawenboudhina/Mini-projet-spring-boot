@@ -2,11 +2,20 @@ package com.rawen.plats.entities;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 
 @Entity
 
@@ -14,8 +23,23 @@ public class Plat {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPlat;
+	
+	@NotNull
+	@Size (min = 4,max = 15)
+
 	private String nomPlat;
+	
+	@Min(value = 10)
+	 @Max(value = 10000)
 	private Double prixPlat;
+
+	
+	
+	@Temporal(TemporalType.DATE)
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@PastOrPresent
+
 	private Date dateCreation;
 	@ManyToOne
 	private Style style;
@@ -76,5 +100,12 @@ public class Plat {
 	public void setStyle(Style style) {
 		this.style = style;
 	}
+	 public Plat(String nomPlat, Double prixPlat, Date dateCreation, Style style) {
+	        super();
+	        this.nomPlat = nomPlat;
+	        this.prixPlat = prixPlat;
+	        this.dateCreation = dateCreation;
+	        this.style = style;
+	    }
 
 }

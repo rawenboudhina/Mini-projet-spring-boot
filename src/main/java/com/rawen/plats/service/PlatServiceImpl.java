@@ -10,11 +10,14 @@ import org.springframework.stereotype.Service;
 import com.rawen.plats.entities.Plat;
 import com.rawen.plats.entities.Style;
 import com.rawen.plats.repos.PlatRepository;
+import com.rawen.plats.repos.StyleRepository;
 
 @Service
 public class PlatServiceImpl implements PlatService{
 	@Autowired
 	PlatRepository platRepository;
+	@Autowired
+	StyleRepository styleReposiroty;
 	  
 
 	@Override
@@ -92,6 +95,11 @@ public class PlatServiceImpl implements PlatService{
 		@Override
 		public List<Plat> trierPlatsNomsPrix() {
 			return platRepository.trierPlatsNomsPrix();
+		}
+
+		@Override
+		public List<Style> getAllStyles() {
+			return styleReposiroty.findAll();
 		}
 
 		
