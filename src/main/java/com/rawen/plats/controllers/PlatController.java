@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,12 @@ import jakarta.validation.Valid;
 public class PlatController {
 	@Autowired
 	PlatService platService;
+
+	
+	@GetMapping(value = "/")
+	public String welcome() {
+	 return "index";
+	}
 
 	@RequestMapping("/listePlats")
 	public String listePlats(ModelMap modelMap, @RequestParam(name = "page", defaultValue = "0") int page,
@@ -41,7 +48,7 @@ public class PlatController {
 		List<Style> styles = platService.getAllStyles();
 
 		modelMap.addAttribute("mode", "new");
-		modelMap.addAttribute("styles", "styles");
+		modelMap.addAttribute("styles", styles);
 
 
 		return "formPlat";
@@ -102,7 +109,7 @@ public class PlatController {
 
 		modelMap.addAttribute("plat", p);
 		modelMap.addAttribute("mode", "edit");
-		modelMap.addAttribute("styles", "styles");
+		modelMap.addAttribute("styles", styles);
 		modelMap.addAttribute("page", page);
 		modelMap.addAttribute("size", size);
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ xmlns:sec=https://www.thymeleaf.org/thymeleaf-extras-springsecurity6>
 <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
 
 <head>
@@ -36,9 +37,9 @@
 						<td th:if="${!#strings.isEmpty(p.style)}" th:text="${p.style.nomStyle}"></td>
 						<td th:if="${#strings.isEmpty(p.style)}" th:text="${'Pas de Style pour ce plat'}"></td>
 
-						<td><a class="btn btn-success" th:href="@{modifierPlat(id=${p.idPlat}, page=${currentPage},size=${size})}">Editer</a></td>
+						<td><a sec:authorize="hasAnyAuthority('ADMIN','USER2')" class="btn btn-success" th:href="@{modifierPlat(id=${p.idPlat}, page=${currentPage},size=${size})}">Editer</a></td>
 
-						<td><a class="btn btn-danger" onclick="return confirm('Etes-vous sûr ?')"
+						<td><a sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger" onclick="return confirm('Etes-vous sûr ?')"
 								th:href="@{supprimerPlat(id=${p.idPlat}, page=${currentPage},size=${size})}">Supprimer</a>
 						</td>
 

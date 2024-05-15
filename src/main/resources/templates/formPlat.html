@@ -40,25 +40,23 @@
 
 
 					</div>
-				<div class="form-group">
-						<label class="control-label">Categorie :</label> 
-						<select 
-							name="style" class="form-control"
-							th:value="${plat.style.idStyle}"
+					<div class="form-group">
+						<label class="control-label">Style :</label>
+						<select name="style" class="form-control" th:value="${plat.style.idStyle}"
 							th:if="${!#strings.isEmpty(plat.style)}">
-							<option th:each="c:${styles}" th:if="${mode=='edit'}"
-								th:value="${c.idStyle}" th:text="${c.nomStyle}"
-								th:selected="${ c.idStyle==plat.style.idStyle}">
+							<option th:each="c:${styles}" th:if="${mode=='edit'}" th:value="${c.idStyle}"
+								th:text="${c.nomStyle}" th:selected="${ c.idStyle==plat.style.idStyle}">
 							</option>
 						</select>
-						 s'il s'agit d'un ajout (mode==new) ou d'une modification d'un produit ayant une catégorie null 
-						<select name="style" class="form-control"th:if="${#strings.isEmpty(plat.style)}">
-							<option th:each="c:${styles}" th:value="${c.idStyle}"
-								th:text="${c.nomStyle}"></option>
+						<!-- s'il s'agit d'un ajout (mode==new) ou d'une modification d'un produit ayant une catégorie null -->
+						<select name="style" class="form-control" th:if="${#strings.isEmpty(plat.style)}">
+							<option th:each="c:${styles}" th:value="${c.idStyle}" th:text="${c.nomStyle}">
+							</option>
 						</select>
 					</div>
 
-			
+
+
 					<div>
 						<button type="submit" class="btn btn-primary">Valider</button>
 					</div>
